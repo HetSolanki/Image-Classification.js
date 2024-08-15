@@ -43,3 +43,19 @@ const loadData = () => {
   testData = loadImages(testImagesDir);
   console.log("Images loaded successfully...");
 };
+
+const getTrainData = () => {
+  return {
+    images: tf.concat(trainData[0]),
+    labels: tf.oneHot(tf.tensor1d(trainData[1], "float32"), 2),
+  };
+};
+
+const getTestData = () => {
+  return {
+    images: tf.concat(testData[0]),
+    labels: tf.oneHot(tf.tensor1d(testData[1], "float32"), 2),
+  };
+};
+
+module.exports = { loadData, getTrainData, getTestData };
